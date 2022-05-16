@@ -1,4 +1,4 @@
-package application;
+package com.example.sae202;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;

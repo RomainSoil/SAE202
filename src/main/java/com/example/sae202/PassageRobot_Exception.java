@@ -1,4 +1,4 @@
-package application;
+package com.example.sae202;
 
 public class PassageRobot_Exception extends Exception{
 	

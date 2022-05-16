@@ -1,4 +1,4 @@
-package application;
+package com.example.sae202;
 
 public class SecteurContenance_Exception extends Exception{
 	

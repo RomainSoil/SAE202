@@ -1,4 +1,4 @@
-package application;
+package com.example.sae202;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
