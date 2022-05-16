@@ -1,9 +1,8 @@
 package com.example.sae202;
 
 public class DepassementMonde_Exception extends Exception{
-	
-	public String DepassementMonde_Exception(String m)
-	{
-		return m;
+	public DepassementMonde_Exception(String message) {
+		super(message);
 	}
+
 }
