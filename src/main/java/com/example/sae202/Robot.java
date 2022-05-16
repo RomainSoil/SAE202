@@ -8,6 +8,7 @@ public class Robot extends Coordonnee
     private int capExtraction;
     private int nbMinAct;
     private int Stockage;
+    private int Extraction;
 
     public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc)
     {
@@ -17,6 +18,7 @@ public class Robot extends Coordonnee
         capExtraction = cE;
         nbMinAct = nbM;
         Stockage = stc;
+        Extraction = 0+(int)(Math.random()*((4-0)+1)) ;
 
     }
 
@@ -42,9 +44,9 @@ public class Robot extends Coordonnee
 
     public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
-        if (capStokage > 0 && capExtraction > 0 && mine.getNbMinerais() > 0)
+        if (Stockage < capStokage && Extraction < capExtraction && mine.getNbMinerais() > 0)
         {
-            capExtraction -=1;
+            Extraction -=1;
             Stockage -=1;
             mine.ExtractionMinerais();
 
@@ -64,5 +66,5 @@ public class Robot extends Coordonnee
 
     }
 
-}
+
 
