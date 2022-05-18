@@ -45,6 +45,7 @@ public class Mine extends Coordonnee
     {
         return nbMinerais;
     }
+    public void ExtractionMinerais(){ nbMinerais -=1 ;}
 
     public int getCapInit()
     {

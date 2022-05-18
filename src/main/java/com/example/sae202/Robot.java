@@ -47,7 +47,5 @@ public class Robot extends Coordonnee
         }
     }
 
-
-
 }
 
