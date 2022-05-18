@@ -27,7 +27,7 @@ public class Coordonnee {
     public void Nord() throws DepassementMonde_Exception {
         this.y = this.y + 1;
         if (this.y == 0) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
     }
@@ -35,7 +35,7 @@ public class Coordonnee {
     public void Sud () throws DepassementMonde_Exception {
         this.y = this.y - 1;
         if (this.y == 10) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
     }
@@ -43,7 +43,7 @@ public class Coordonnee {
     public void Ouest ()throws DepassementMonde_Exception
         { this.x = this.x - 1;
             if (this.x == 0) {
-                DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+                DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
                 throw DE;
             }
         }
@@ -52,7 +52,7 @@ public class Coordonnee {
         {
             this.x = this.x + 1;
             if (this.x == 10) {
-                DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+                DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
                 throw DE;
             }
         }
