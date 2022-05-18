@@ -44,7 +44,6 @@ public class Coordonnee
 
     public void Est()
     {
-
         this.y=this.y+1;
     }
 }
