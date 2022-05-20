@@ -23,7 +23,7 @@ public class Monde extends Application {
 
     public void start(final Stage stage) throws Exception {
 
-        /*partie monde */
+        /*partie monde*/
         int rows = 11;
         int columns = 11;
         stage.setTitle("Monde");
@@ -73,6 +73,7 @@ public class Monde extends Application {
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();
+
 
     }
     public static void Main(String[] args) {
