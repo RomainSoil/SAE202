@@ -2,28 +2,50 @@ package com.example.sae202;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
-public class GestionEvent implements EventHandle{
-	Robot rob = new Robot(0,0,1,5,3,0,4);
+public class GestionEvent implements EventHandler{
+	private Robot rob;
 	@Override
-	public void handle(Event event) throws DepassementMonde_Exception {
-		if(event.getSource().toString().contains("avancer"))
+	public void handle(Event event) {
+		if(event.getEventType() == MouseEvent.MOUSE_CLICKED)
 		{
-			rob.Nord();
-		}
-		else if(event.getSource().toString().contains("reculer"))
-		{
-			rob.Sud();
-		}
-		
-		else if(event.getSource().toString().contains("gauche"))
-		{
-			rob.Ouest();
-		}
-		
-		else if(event.getSource().toString().contains("droite"))
-		{
-			rob.Est();
+			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("avancer")))
+			{
+				try {
+					rob.Nord();
+				} catch (DepassementMonde_Exception e) {
+					e.printStackTrace();
+				}
+			}
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("reculer")))
+			{
+				try {
+					rob.Sud();
+				} catch (DepassementMonde_Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("gauche")))
+			{
+				try {
+					rob.Ouest();
+				} catch (DepassementMonde_Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("droite")))
+			{
+				try {
+					rob.Est();
+				} catch (DepassementMonde_Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

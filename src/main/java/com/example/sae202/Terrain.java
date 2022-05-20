@@ -1,33 +1,35 @@
 package com.example.sae202;
 
-public class Terrain extends Secteur{
+import javafx.geometry.Pos;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Text;
 
-    private boolean occupe;
+public class Terrain {
+    private Coordonnee coordonnee;
 
-    public Terrain(int x, int y, boolean occupe) {
-        super(x, y);
-        this.occupe = occupe;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                secteur[i][j] = "  ";}}
-    }
+    public GridPane Terrain1(GridPane sect,int x, int y) {
 
-    public Terrain(int x, int y) {
-        super(x, y);
-        this.occupe= false;
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                secteur[i][j] = "  ";}}
-    }
+        this.coordonnee = new Coordonnee(x, y);
+        int rows1 = 2;
+        int columns1 = 2;
+        sect = new GridPane();
+        sect.setAlignment(Pos.CENTER);
 
-    public void affichage()
-    {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                System.out.print(" | "+secteur[i][j]);
-
-            }
-            System.out.println("");
+        for (int i = 0; i < columns1; i++) {
+            ColumnConstraints column1 = new ColumnConstraints(40);
+            sect.getColumnConstraints().add(column1);
         }
+        for (int i = 0; i < rows1; i++) {
+            RowConstraints row = new RowConstraints(40);
+            sect.getRowConstraints().add(row);
+        }
+
+
+
+        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        return sect;
     }
+
 }
