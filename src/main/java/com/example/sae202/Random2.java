@@ -14,4 +14,9 @@ public class Random2 {
     this.value = random.nextInt(max + min) + min;
 		System.out.println(value);
 
-}}
+    }
+
+    public int getValue() {
+        return value;
+    }
+}

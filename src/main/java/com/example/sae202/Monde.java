@@ -1,82 +1,81 @@
 package com.example.sae202;
 
-import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 
-import java.util.Random;
+public class Monde {
 
-import static javafx.scene.text.TextAlignment.CENTER;
+    private Secteur[][] leMonde;
+    private Entrepot entrepot;
+    private Mine mine;
+    private PlanDeau pd;
+    private Terrain terrain;
 
-public class Monde extends Application {
-    private Secteur secteur;
-    static GridPane grid;
-    static GridPane sect;
-
-    public void start(final Stage stage) throws Exception {
-
-        /*partie monde*/
-        int rows = 11;
-        int columns = 11;
-        stage.setTitle("Monde");
-        grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-
-
-        for(int i = 0; i < columns; i++) {
-            ColumnConstraints column = new ColumnConstraints(70);
-            grid.getColumnConstraints().add(column);
+    public boolean estPasLibre(int x, int y)
+    {
+        if (leMonde[x][y] instanceof Terrain)
+        {
+            return false;
         }
-        for(int i = 0; i < rows; i++) {
-            RowConstraints row = new RowConstraints(70);
-            grid.getRowConstraints().add(row);
-        }
-        for(int i=1 ; i < columns;i++){
-            for (int j = 1; j < rows;j++) {
-                sect = new GridPane();
-                secteur = new Secteur();
-                sect = secteur.Secteur1(sect,i,j);
-
-                grid.setColumnIndex(sect,i);
-                grid.setRowIndex(sect,j);
-                grid.getChildren().add(sect);
-
-            }
-        }
-        for(int i=0 ; i < columns;i++){
-            for (int j = 0; j < 1;j++) {
-                Text text = new Text(String.valueOf(i));
-                grid.setColumnIndex(text,i);
-                grid.setRowIndex(text,j);
-                grid.getChildren().add(text);
-            }
-        }
-        for(int i=0 ; i < 1;i++){
-            for (int j = 0; j < rows;j++) {
-                Text text = new Text(String.valueOf(j));
-                grid.setColumnIndex(text,i);
-                grid.setRowIndex(text,j);
-                grid.getChildren().add(text);
-            }
-        }
-
-        grid.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
-        Scene scene = new Scene(grid,Color.WHITE);
-        stage.setScene(scene);
-        stage.sizeToScene();
-        stage.show();
-
-
+        else {return true;}
     }
-    public static void Main(String[] args) {
-        launch(args);
-    }
-}
+
+    public Monde() {
+        this.leMonde = new Secteur[10][10];
+        for(int i=1 ; i < 10;i++){
+            for (int j = 1; j < 10;j++) {
+                terrain = new Terrain();
+                leMonde[i][j] = terrain;
+            }}
+
+        Random2 random2= new Random2(1,10);
+        int g = random2.getValue();
+        for (int i=0;i<=g;i++)
+
+        {
+            Random2 randomX=new Random2(1,9);
+            Random2 randomY=new Random2(1,9);
+            int x=randomX.getValue();
+            int y=randomY.getValue();
+            while (this.estPasLibre(x,y)) {
+                randomX=new Random2(1,9);
+                randomY=new Random2(1,9);
+                x=randomX.getValue();
+                y=randomY.getValue();
+            }
+            pd = new PlanDeau(x,y);
+            leMonde[x][y]=pd;
+
+        }
+
+        for (int i=0;i<2;i++) {
+            Random2 randomX = new Random2(1, 9);
+            Random2 randomY = new Random2(1, 9);
+            int x = randomX.getValue();
+            int y = randomY.getValue();
+            while (this.estPasLibre(x, y)) {
+                randomX = new Random2(1, 9);
+                randomY = new Random2(1, 9);
+                x = randomX.getValue();
+                y = randomY.getValue();
+            }
+            entrepot = new Entrepot(x, y);
+            leMonde[x][y] = pd;
+        }
+        for (int i=0;i<2;i++)
+        {
+            Random2 randomX=new Random2(1,9);
+            Random2 randomY=new Random2(1,9);
+            int x=randomX.getValue();
+            int y=randomY.getValue();
+            while (this.estPasLibre(x, y)) {
+                randomX = new Random2(1, 9);
+                randomY = new Random2(1, 9);
+                x = randomX.getValue();
+                y = randomY.getValue();
+            }
+            mine = new Mine(x, y);
+            leMonde[x][y] = pd;
+
+
+        }
+}  }
