@@ -7,11 +7,18 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
 public class Terrain extends Secteur{
-    private Coordonnee coordonnee;
+    public Terrain(int x, int y) {
+        this.x = x;
+        this.y=y;
+    }
+
+    private int x;
+    private int y;
 
     public GridPane Terrain1(GridPane sect,int x, int y) {
 
-        this.coordonnee = new Coordonnee(x, y);
+        this.x = x;
+        this.y = y;
         int rows1 = 2;
         int columns1 = 2;
         sect = new GridPane();

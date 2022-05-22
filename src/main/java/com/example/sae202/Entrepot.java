@@ -17,9 +17,10 @@ public class Entrepot extends Secteur
     private String natureStock;
     private int stock;
 
-    public Entrepot(int x, int y) {
+    public Entrepot(int x, int y,int nb) {
         this.x = x;
         this.y = y;
+        this.numEntrepot=nb;
     }
 
     /**

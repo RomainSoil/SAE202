@@ -14,10 +14,10 @@ public class Mine extends Secteur {
     private String natureMinerais;
     private int capaciteInit;
 
-    public Mine(int x, int y) {
+    public Mine(int x, int y, int nb) {
         this.x = x;
         this.y = y;
-        numMine = 0;
+        numMine = nb;
         nbMinerais = 150;
         natureMinerais = "nickel";
         capaciteInit = 150;
