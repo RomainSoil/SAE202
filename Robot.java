@@ -92,7 +92,17 @@ public class Robot
     		this.capExtraction = rand2.getValue();
     		}
     	}
-    	if (entrepot.getStockInit() - this.nbMinAct < 0 || )
+    	if (entrepot.getStockInit() - this.nbMinAct < 0 || entrepot.getStockInit() - entrepot.getStockAct() < 0)
+    	{
+    		DepassementStockage_Exception DS = new DepassementStockage_Exception("Le stockage est devenu négatif !");
+    		throw DS;
+    	}
+    	if ((!(entrepot.getNatureStock().equals(this.getNatureExtrac()))))
+    	{
+    		SecteurContenance_Exception SC = new SecteurContenance_Exception(" Le type de minerais du robot n'est pas bon !");
+    		throw SC;
+    				
+    	}
     }
     
     public void Nord() throws DepassementMonde_Exception {
