@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 public class PlanDeau extends Secteur{
     private int x;
     private int y;
+    private Robot robot;
 
     public PlanDeau(int x, int y) {
         this.x = x;
@@ -44,6 +45,23 @@ public class PlanDeau extends Secteur{
 
         sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
         return sect;
+    }
+
+    public void setrobot1(Robot robo) {
+        robot = robo;
+    }
+
+    public void setrobot2() {
+        robot = null;
+    }
+
+
+    public boolean getRobotPresent() {
+        if (robot==null)
+            return false;
+        else
+            return true;
+
     }
 
 }

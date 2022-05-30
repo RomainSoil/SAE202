@@ -12,7 +12,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public abstract class  Secteur {
+    private Robot robot;
 
+    public abstract void setrobot1(Robot robot);
+    public abstract void setrobot2();
+    public abstract boolean getRobotPresent();
 
 
 

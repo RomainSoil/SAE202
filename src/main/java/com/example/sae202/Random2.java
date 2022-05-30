@@ -12,7 +12,7 @@ public class Random2 {
         Random random = new Random();
 
     this.value = random.nextInt(max + min) + min;
-		System.out.println(value);
+
 
     }
 

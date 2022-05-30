@@ -6,6 +6,12 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+
 public class Monde {
 
     private Secteur[][] leMonde;
@@ -25,6 +31,7 @@ public class Monde {
         for(int i=0 ; i < 10;i++){
             for (int j = 0; j < 10;j++) {
                 leMonde[i][j] = new Terrain(i,j);
+
             }}
 
         Random2 random2= new Random2(1,10);
@@ -78,42 +85,95 @@ public class Monde {
 
 
         }
+        Random2 randomX2=new Random2(0,10);
+        Random2 randomY2=new Random2(0,10);
+        int x=randomX2.getValue();
+        int y=randomY2.getValue();
+        while (this.EstPasLibre(x,y)) {
+            x = new Random2(0, 10).getValue();
+            y = new Random2(0, 10).getValue();
+        }
+        Robot robot1 =new Robot(x,y,1,9,3,1,0);
+        leMonde[x][y].setrobot1(robot1);
+
+        Random2 randomX3=new Random2(0,10);
+        Random2 randomY3=new Random2(0,10);
+        int X=randomX3.getValue();
+        int Y=randomY3.getValue();
+        while (this.EstPasLibre(X,Y)) {
+            X = new Random2(0, 10).getValue();
+            Y = new Random2(0, 10).getValue();
+        }
+        Robot robot2 =new Robot(X,Y,2,9,3,1,0);
+        leMonde[X][Y].setrobot1(robot2);
+
     }
-     public void affichage(GridPane grid) {
+    public void affichage(GridPane grid) {
 
 
 
 
 
-         for (int i = 1; i < 11; i++) {
-             for (int j = 1; j < 11; j++) {
-                 if (leMonde[i-1][j-1] instanceof Terrain) {
-                     GridPane sect = ((Terrain) leMonde[i-1][j-1]).Terrain1(grid, i, j);
-                     grid.setColumnIndex(sect,i);
-                     grid.setRowIndex(sect,j);
-                     grid.getChildren().add(sect);
-                 } else if (leMonde[i-1][j-1] instanceof PlanDeau) {
-                     GridPane sect =((PlanDeau) leMonde[i-1][j-1]).PD(grid, i, j);
-                     grid.setColumnIndex(sect,i);
-                     grid.setRowIndex(sect,j);
-                     grid.getChildren().add(sect);
-                 } else if (leMonde[i-1][j-1] instanceof Entrepot) {
-                     GridPane sect=((Entrepot) leMonde[i-1][j-1]).Entrepot(grid, i, j, ((Entrepot) leMonde[i-1][j-1]).getNumEnt());
-                     grid.setColumnIndex(sect,i);
-                     grid.setRowIndex(sect,j);
-                     grid.getChildren().add(sect);
-                 } else if (leMonde[i-1][j-1] instanceof Mine) {
-                     GridPane sect=((Mine) leMonde[i-1][j-1]).Mine(grid, i, j, ((Mine) leMonde[i-1][j-1]).getNumM());
-                     grid.setColumnIndex(sect,i);
-                     grid.setRowIndex(sect,j);
-                     grid.getChildren().add(sect);
-                 }
+        for (int i = 1; i < 11; i++) {
+            for (int j = 1; j < 11; j++) {
+                if (leMonde[i-1][j-1] instanceof Terrain) {
+                    if (leMonde[i-1][j-1].getRobotPresent())
+                    {
+                        GridPane sect = ((Terrain) leMonde[i-1][j-1]).Terrain2(grid, i, j);
+                        grid.setColumnIndex(sect,i);
+                        grid.setRowIndex(sect,j);
+                        grid.getChildren().add(sect);
+                    }
+                    else {
+                        GridPane sect = ((Terrain) leMonde[i - 1][j - 1]).Terrain1(grid, i, j);
+                        grid.setColumnIndex(sect, i);
+                        grid.setRowIndex(sect, j);
+                        grid.getChildren().add(sect);
+                    }
+                } else if (leMonde[i-1][j-1] instanceof PlanDeau) {
+                    GridPane sect =((PlanDeau) leMonde[i-1][j-1]).PD(grid, i, j);
+                    grid.setColumnIndex(sect,i);
+                    grid.setRowIndex(sect,j);
+                    grid.getChildren().add(sect);
+                } else if (leMonde[i-1][j-1] instanceof Entrepot) {
 
-             }
-         }
+                    if (leMonde[i-1][j-1].getRobotPresent())
+                    {
+                        GridPane sect=((Entrepot) leMonde[i-1][j-1]).Entrepot2(grid, i, j, ((Entrepot) leMonde[i-1][j-1]).getNumEnt());
+                        grid.setColumnIndex(sect,i);
+                        grid.setRowIndex(sect,j);
+                        grid.getChildren().add(sect);
+                    }
+                    else {
+                    GridPane sect=((Entrepot) leMonde[i-1][j-1]).Entrepot(grid, i, j, ((Entrepot) leMonde[i-1][j-1]).getNumEnt());
+                    grid.setColumnIndex(sect,i);
+                    grid.setRowIndex(sect,j);
+                    grid.getChildren().add(sect);}
+
+                } else if (leMonde[i-1][j-1] instanceof Mine) {
+
+                    if (leMonde[i-1][j-1].getRobotPresent())
+                    {
+
+                        GridPane sect=((Mine) leMonde[i-1][j-1]).Mine2(grid, i, j, ((Mine) leMonde[i-1][j-1]).getNumM());
+                        grid.setColumnIndex(sect,i);
+                        grid.setRowIndex(sect,j);
+                        grid.getChildren().add(sect);
+
+                    }
+                    else {
+                    GridPane sect=((Mine) leMonde[i-1][j-1]).Mine(grid, i, j, ((Mine) leMonde[i-1][j-1]).getNumM());
+                    grid.setColumnIndex(sect,i);
+                    grid.setRowIndex(sect,j);
+                    grid.getChildren().add(sect);}
+                }
+
+            }
+        }
 
 
-     }
+    }
 
 
 }
+
