@@ -7,6 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class GestionEvent implements EventHandler{
+	private Monde leMonde;
 	private Robot rob;
 	@Override
 	public void handle(Event event) {
@@ -15,7 +16,7 @@ public class GestionEvent implements EventHandler{
 			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("avancer")))
 			{
 				try {
-					rob.Nord();
+					rob.Nord(leMonde);
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
 				}
@@ -23,7 +24,7 @@ public class GestionEvent implements EventHandler{
 			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("reculer")))
 			{
 				try {
-					rob.Sud();
+					rob.Sud(leMonde);
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
 				}
@@ -32,7 +33,7 @@ public class GestionEvent implements EventHandler{
 			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("gauche")))
 			{
 				try {
-					rob.Ouest();
+					rob.Ouest(leMonde);
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
 				}
@@ -41,7 +42,7 @@ public class GestionEvent implements EventHandler{
 			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("droite")))
 			{
 				try {
-					rob.Est();
+					rob.Est(leMonde);
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
 				}

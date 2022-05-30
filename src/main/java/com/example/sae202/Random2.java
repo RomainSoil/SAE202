@@ -11,7 +11,8 @@ public class Random2 {
 
         Random random = new Random();
 
-    this.value = random.nextInt(max + min) + min;
+    this.value = random.nextInt(max - min) + min;
+
 
 
     }

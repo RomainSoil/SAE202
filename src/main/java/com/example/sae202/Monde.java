@@ -14,8 +14,13 @@ import javafx.scene.layout.RowConstraints;
 
 public class Monde {
 
-    private Secteur[][] leMonde;
+    public Secteur[][] leMonde;
+    public Robot robot1;
+    private Robot robot2;
 
+    public Secteur[][] getLeMonde() {
+        return leMonde;
+    }
 
     public boolean EstPasLibre(int x, int y)
     {
@@ -93,7 +98,13 @@ public class Monde {
             x = new Random2(0, 10).getValue();
             y = new Random2(0, 10).getValue();
         }
-        Robot robot1 =new Robot(x,y,1,9,3,1,0);
+
+        Random2 CS1 = new Random2(5,10);
+        int CapStock1 = CS1.getValue();
+        Random2 CE1 = new Random2(1,4);
+        int CapEx1 = CE1.getValue();
+
+        robot1 =new Robot(x,y,1,CapStock1,CapEx1,1,0);
         leMonde[x][y].setrobot1(robot1);
 
         Random2 randomX3=new Random2(0,10);
@@ -104,7 +115,12 @@ public class Monde {
             X = new Random2(0, 10).getValue();
             Y = new Random2(0, 10).getValue();
         }
-        Robot robot2 =new Robot(X,Y,2,9,3,1,0);
+        Random2 CS2 = new Random2(5,10);
+        int CapStock2 = CS2.getValue();
+        Random2 CE2 = new Random2(1,4);
+        int CapEx2 = CE2.getValue();
+
+        robot2 =new Robot(X,Y,2,CapStock2,CapEx2,1,0);
         leMonde[X][Y].setrobot1(robot2);
 
     }

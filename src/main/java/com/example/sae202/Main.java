@@ -64,6 +64,23 @@ public class Main extends Application {
 
         this.leMonde=new Monde();
         leMonde.affichage(grid);
+        System.out.println(leMonde.robot1.getX());
+        System.out.println(leMonde.robot1.getY());
+
+        int x =leMonde.robot1.getX();
+        int y= leMonde.robot1.getY();
+        System.out.println(leMonde.leMonde[x][y].getRobotPresent());
+
+        leMonde.robot1.Nord(leMonde);
+        System.out.println(leMonde.robot1.getX());
+        System.out.println(leMonde.robot1.getY());
+        System.out.println(leMonde.leMonde[x-1][y].getRobotPresent());
+        leMonde.robot1.Ouest(leMonde);
+        System.out.println(leMonde.robot1.getX());
+        System.out.println(leMonde.robot1.getY());
+        System.out.println(leMonde.leMonde[x][y].getRobotPresent());
+
+
 
 
 

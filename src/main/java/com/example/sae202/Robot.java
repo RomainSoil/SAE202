@@ -72,37 +72,59 @@ public class Robot
 
 
     }
-    public void Nord() throws DepassementMonde_Exception {
-        this.y = this.y + 1;
-        if (this.y == 0) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+    public void Nord(Monde leMonde) throws DepassementMonde_Exception {
+
+        if (this.y == 0 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        leMonde.leMonde[x][y].setrobot2();
+        this.x = this.x-1;
+        leMonde.leMonde[x][y].setrobot1(this);
+
+
     }
 
-    public void Sud () throws DepassementMonde_Exception {
-        this.y = this.y - 1;
-        if (this.y == 10) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+    public void Sud (Monde leMonde) throws DepassementMonde_Exception {
+
+        if (this.x == 10 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
-    }
-
-    public void Ouest ()throws DepassementMonde_Exception
-    { this.x = this.x - 1;
-        if (this.x == 0) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
-            throw DE;
-        }
-    }
-
-    public void Est ()throws DepassementMonde_Exception
-    {
+        leMonde.leMonde[x][y].setrobot2();
         this.x = this.x + 1;
-        if (this.x == 10) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
-            throw DE;
-        }
+        leMonde.leMonde[x][y].setrobot1(this);
     }
 
+    public void Ouest (Monde leMonde)throws DepassementMonde_Exception
+    {
+        if (this.y == 0 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
+            throw DE;
+        }
+        leMonde.leMonde[x][y].setrobot2();
+        this.y = this.y - 1;
+        leMonde.leMonde[x][y].setrobot1(this);
+
+    }
+
+    public void Est (Monde leMonde)throws DepassementMonde_Exception
+    {
+        if (this.y == 10 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
+            throw DE;
+        }
+        leMonde.leMonde[x][y].setrobot2();
+        this.y = this.y + 1;
+        leMonde.leMonde[x][y].setrobot1(this);
+
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
