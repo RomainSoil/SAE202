@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -39,7 +41,22 @@ public class utilisation extends Application{
 		reculer.setOnKeyReleased(gestionevent);
 		gauche.setOnKeyReleased(gestionevent);
 		droite.setOnKeyReleased(gestionevent);
-
+		
+		final Image img1= new Image(getClass().getResource("flecheHaut.png").toExternalForm());
+		final ImageView icon1= new ImageView(img1);
+		avancer.setGraphic(icon1);
+		
+		final Image img2= new Image(getClass().getResource("flecheB.png").toExternalForm());
+		final ImageView icon2= new ImageView(img2);
+		reculer.setGraphic(icon2);
+		
+		final Image img3= new Image(getClass().getResource("flecheG.png").toExternalForm());
+		final ImageView icon3= new ImageView(img3);
+		gauche.setGraphic(icon3);
+		
+		final Image img4= new Image(getClass().getResource("flecheD.png").toExternalForm());
+		final ImageView icon4= new ImageView(img4);
+		droite.setGraphic(icon4);
 		Scene scene= new Scene(vbox);
 		stage.setScene(scene);
 		stage.show();
