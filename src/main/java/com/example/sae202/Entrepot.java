@@ -22,6 +22,7 @@ public class Entrepot extends Secteur
         this.x = x;
         this.y = y;
         this.numEntrepot=nb;
+        natureStock = "nickel";
     }
 
     /**
@@ -39,13 +40,14 @@ public class Entrepot extends Secteur
 
     }
 
-    public Entrepot(int x, int y, int ne, String ns, int s)
+    public Entrepot(int x, int y, int ne, int s)
     {
         this.x=x;
         this.y=y;
         numEntrepot = ne;
-        natureStock = ns;
+        natureStock = "nickel";
         stock = s;
+
     }
 
     public int getNumEnt()

@@ -76,49 +76,54 @@ public class Robot
     }
     public void Nord(Monde leMonde) throws DepassementMonde_Exception {
 
-        if (this.y == 0 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+        if (this.y == 0 || leMonde.leMonde[x][y-1] instanceof PlanDeau) {
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        else{
         leMonde.leMonde[x][y].setrobot2();
         this.y = this.y-1;
-        leMonde.leMonde[x][y].setrobot1(this);
+        leMonde.leMonde[x][y].setrobot1(this);}
 
 
     }
 
     public void Sud (Monde leMonde) throws DepassementMonde_Exception {
 
-        if (this.y == 10 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+        if (this.y == 10 || leMonde.leMonde[x][y+1] instanceof PlanDeau) {
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        else
+        {
         leMonde.leMonde[x][y].setrobot2();
         this.y = this.y + 1;
-        leMonde.leMonde[x][y].setrobot1(this);
+        leMonde.leMonde[x][y].setrobot1(this);}
     }
 
     public void Ouest (Monde leMonde)throws DepassementMonde_Exception
     {
-        if (this.x == 0 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+        if (this.x == 0 || leMonde.leMonde[x-1][y] instanceof PlanDeau) {
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        else{
         leMonde.leMonde[x][y].setrobot2();
         this.x = this.x - 1;
-        leMonde.leMonde[x][y].setrobot1(this);
+        leMonde.leMonde[x][y].setrobot1(this);}
 
     }
 
     public void Est (Monde leMonde)throws DepassementMonde_Exception
     {
-        if (this.x == 10 || leMonde.leMonde[x][y] instanceof PlanDeau) {
+        if (this.x == 10 || leMonde.leMonde[x+1][y] instanceof PlanDeau) {
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        else {
         leMonde.leMonde[x][y].setrobot2();
         this.x = this.x + 1;
-        leMonde.leMonde[x][y].setrobot1(this);
+        leMonde.leMonde[x][y].setrobot1(this);}
 
     }
 
