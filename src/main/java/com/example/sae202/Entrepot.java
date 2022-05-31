@@ -164,4 +164,8 @@ public class Entrepot extends Secteur
             return true;
 
     }
+
+    public void setNatureStock(String natureStock) {
+        this.natureStock = natureStock;
+    }
 }

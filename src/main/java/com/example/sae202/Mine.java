@@ -150,6 +150,10 @@ public class Mine extends Secteur {
 
     }
 
+    public void setNatureMinerais(String natureMinerais) {
+        this.natureMinerais = natureMinerais;
+    }
+
     public void setrobot1(Robot robo) {
         robot = robo;
     }

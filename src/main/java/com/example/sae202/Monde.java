@@ -73,6 +73,10 @@ public class Monde {
 
 
             leMonde[x][y] =new Entrepot(x, y,i);
+            if (i==1)
+            {
+                ((Entrepot) leMonde[x][y]).setNatureStock("OR");
+            }
         }
         for (int i=0;i<2;i++)
         {
@@ -87,9 +91,14 @@ public class Monde {
             }
 
             leMonde[x][y]= new Mine(x, y,i);
+            if (i==1)
+            {
+                ((Mine) leMonde[x][y]).setNatureMinerais("OR");
+            }
 
 
         }
+
         Random2 randomX2=new Random2(0,10);
         Random2 randomY2=new Random2(0,10);
         int x=randomX2.getValue();
@@ -104,7 +113,7 @@ public class Monde {
         Random2 CE1 = new Random2(1,4);
         int CapEx1 = CE1.getValue();
 
-        robot1 =new Robot(x,y,1,CapStock1,CapEx1,1,0);
+        robot1 =new Robot(x,y,1,CapStock1,CapEx1,1,0,"Nickel");
         leMonde[x][y].setrobot1(robot1);
 
         Random2 randomX3=new Random2(0,10);
@@ -120,7 +129,7 @@ public class Monde {
         Random2 CE2 = new Random2(1,4);
         int CapEx2 = CE2.getValue();
 
-        robot2 =new Robot(X,Y,2,CapStock2,CapEx2,1,0);
+        robot2 =new Robot(X,Y,2,CapStock2,CapEx2,1,0,"OR");
         leMonde[X][Y].setrobot1(robot2);
 
     }
