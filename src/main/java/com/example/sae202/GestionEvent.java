@@ -2,11 +2,17 @@ package com.example.sae202;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class GestionEvent implements EventHandler{
@@ -126,6 +132,21 @@ public class GestionEvent implements EventHandler{
 					robot1.recolter(mine);
 					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
+
+					if (leMonde.mine1.getNbMinerais()<2&&leMonde.mine2.getNbMinerais()<2)
+					{
+						Text win = new Text("VOUS AVEZ GAGNÉ !");
+						win.setTextAlignment(TextAlignment.CENTER);
+						StackPane vBoxWin = new StackPane();
+						vBoxWin.getChildren().add(win);
+						vBoxWin.setAlignment(win, Pos.CENTER);
+						Scene scnWin = new Scene(vBoxWin,500,200);
+						Stage stageWin =new Stage();
+						stageWin.setScene(scnWin);
+						stageWin.sizeToScene();
+						stageWin.setTitle("VICTOIRE");
+						stageWin.show();
+					}
 
 				} catch (DepassementCapaciteExtraction e){
 

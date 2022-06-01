@@ -19,7 +19,7 @@ public class Robot
     private int Stockage;
     private static int Extraction =3;
 
-    public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc, String type, int ext)
+    public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc, String type)
     {
         this.x=x;
         this.y=y;
@@ -29,7 +29,7 @@ public class Robot
         nbMinAct = nbM;
         Stockage = stc;
         Type = type;
-        Extraction = ext ;
+        Extraction = new Random2(0,4).getValue() ;
 
     }
 

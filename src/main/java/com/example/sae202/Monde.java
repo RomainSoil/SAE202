@@ -142,7 +142,7 @@ public class Monde {
         Random2 CE1 = new Random2(1,4);
         int CapEx1 = CE1.getValue();
 
-        robot1 =new Robot(x,y,1,CapStock1,CapEx1,1,0,"nickel",0);
+        robot1 =new Robot(x,y,1,CapStock1,CapEx1,1,0,"nickel");
         leMonde[x][y].setrobot1(robot1);
 
         Random2 randomX3=new Random2(0,10);
@@ -158,7 +158,7 @@ public class Monde {
         Random2 CE2 = new Random2(1,4);
         int CapEx2 = CE2.getValue();
 
-        robot2 =new Robot(X,Y,2,CapStock2,CapEx2,1,0,"OR",0);
+        robot2 =new Robot(X,Y,2,CapStock2,CapEx2,1,0,"OR");
         leMonde[X][Y].setrobot1(robot2);
 
     }
@@ -321,8 +321,8 @@ public class Monde {
         Tstockentrepot1 =new Label(String.valueOf(entrepot1.getStock()));
         Tstockentrepot2 =new Label(String.valueOf(entrepot2.getStock()));
 
-        Label Tcapacitestockentrpot1 = new Label(String.valueOf("170"));
-        Label Tcapacitestockentrpot2 = new Label(String.valueOf("170"));
+        Label Tcapacitestockentrpot1 = new Label(String.valueOf("100"));
+        Label Tcapacitestockentrpot2 = new Label(String.valueOf("100"));
 
         Text Entrepot = new Text("  E"+(entrepot1.getNumEnt()+1));
         Text Entrepot2 = new Text("  E"+(entrepot2.getNumEnt()+1));

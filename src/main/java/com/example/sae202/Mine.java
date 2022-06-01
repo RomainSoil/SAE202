@@ -19,9 +19,9 @@ public class Mine extends Secteur {
         this.x = x;
         this.y = y;
         numMine = nb;
-        nbMinerais = 150;
+        nbMinerais = new Random2(50,100).getValue();
         natureMinerais = "nickel";
-        capaciteInit = 150;
+        capaciteInit = this.getNbMinerais();
 
     }
 
