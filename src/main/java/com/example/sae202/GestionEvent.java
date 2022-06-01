@@ -23,13 +23,19 @@ public class GestionEvent implements EventHandler{
 
 	@Override
 	public void handle(Event event) {
+		this.leMonde.tour+=1;
 		if(event.getEventType() == MouseEvent.MOUSE_CLICKED)
 		{
 			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot1")))
+			{
 				robot1=leMonde.robot1;
 
-			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot2")))
-				robot1=leMonde.robot2;
+			}
+
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot2"))) {
+				robot1 = leMonde.robot2;
+
+			}
 
 
 
@@ -41,6 +47,14 @@ public class GestionEvent implements EventHandler{
 					robot1.Nord(leMonde);
 					leMonde.affichage(grid);
 					vbox.getChildren().set(0,leMonde.affichageScore());
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+						mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+						entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+
+
 					stage.show();
 
 				} catch (DepassementMonde_Exception e) {
@@ -53,6 +67,14 @@ public class GestionEvent implements EventHandler{
 					robot1.Sud(leMonde);
 					leMonde.affichage(grid);
 					vbox.getChildren().set(0,leMonde.affichageScore());
+
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+						mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+						entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
@@ -65,6 +87,14 @@ public class GestionEvent implements EventHandler{
 					robot1.Ouest(leMonde);
 					leMonde.affichage(grid);
 					vbox.getChildren().set(0,leMonde.affichageScore());
+
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+						mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+						entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
@@ -77,6 +107,14 @@ public class GestionEvent implements EventHandler{
 					robot1.Est(leMonde);
 					leMonde.affichage(grid);
 					vbox.getChildren().set(0,leMonde.affichageScore());
+
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+						mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+					if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+						entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+					}
+
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();

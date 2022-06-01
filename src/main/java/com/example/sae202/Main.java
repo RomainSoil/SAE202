@@ -5,11 +5,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import javafx.application.Application;
@@ -36,9 +38,11 @@ public class Main extends Application {
 
         int rows = 11;
         int columns = 11;
-        stage.setTitle("Monde");
+        stage.setTitle("Robot Mineur");
         grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
+
+
 
 
         for (int i = 0; i < columns; i++) {

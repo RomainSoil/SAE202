@@ -55,8 +55,8 @@ public class Robot
 
     public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
-        System.out.println("ouhouh");
-        if (Stockage < capStokage &&  mine.getNbMinerais() > 0)
+
+        if (Stockage+capExtraction<capStokage &&mine.getNature().equals(this.getType()))
         {
             Stockage +=3;
             mine.nbMinerais-=3;
@@ -109,7 +109,12 @@ public class Robot
         else{
         leMonde.leMonde[x][y].setrobot2();
         this.y = this.y-1;
-        leMonde.leMonde[x][y].setrobot1(this);}
+        leMonde.leMonde[x][y].setrobot1(this);
+        /*if (leMonde.leMonde[x][y] instanceof Mine)
+        {
+
+        }*/
+        }
 
 
     }

@@ -22,6 +22,7 @@ public class Monde {
     public Entrepot entrepot2;
     public Mine mine1;
     public Mine mine2;
+    public int tour;
     private Label Tirob1;
     private Label Tjrob1;
     private Label Tirob2;
@@ -50,6 +51,7 @@ public class Monde {
 
 
     public Monde() {
+        this.tour=0;
         this.leMonde = new Secteur[10][10];
         for(int i=0 ; i < 10;i++){
             for (int j = 0; j < 10;j++) {
@@ -266,7 +268,7 @@ public class Monde {
 
         /*Tour*/
 
-        Text tour =new Text("        Tour :");
+        Text tour =new Text("  Tour : "+ this.tour+"            X / Y               TYPE             STO / CAP");
         vBox.getChildren().add(tour);
         vBox.getChildren().add(new Text("  "));
 
