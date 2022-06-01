@@ -77,6 +77,29 @@ public class Robot
 
 
     }
+
+    public void deposer(Entrepot entrepot) throws DepassementStockage_Exception, SecteurContenance_Exception
+    {
+        if (entrepot.getNatureStock().equals(this.getType()) )
+            {
+                entrepot.setStock(entrepot.getStock() + this.getStockage());
+
+                this.Stockage=0;
+
+            }
+
+        /*if (entrepot.getStock() - this.Stockage < 0 || entrepot.getStockInit() - entrepot.getStock() < 0)
+        {
+            DepassementStockage_Exception DS = new DepassementStockage_Exception("Le stockage est devenu négatif !");
+            throw DS;
+        }*/
+        if ((!(entrepot.getNatureStock().equals(this.getType()))))
+        {
+            SecteurContenance_Exception SC = new SecteurContenance_Exception();
+            throw SC;
+
+        }
+    }
     public void Nord(Monde leMonde) throws DepassementMonde_Exception {
 
         if (this.y == 0 || leMonde.leMonde[x][y-1] instanceof PlanDeau) {

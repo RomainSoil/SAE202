@@ -110,6 +110,7 @@ public class Main extends Application {
         gestionEvent.setStage(stage);
         gestionEvent.setGrid(grid);
         gestionEvent.setMine(leMonde.mine1);
+        gestionEvent.setEntrepot(leMonde.entrepot1);
 
         Nord.setOnMouseClicked(gestionEvent);
         Sud.setOnMouseClicked(gestionEvent);
@@ -121,7 +122,7 @@ public class Main extends Application {
         Deposer.setOnMouseClicked(gestionEvent);
 
         gestionEvent.setVbox(vbox);
-        leMonde.affichageScore(vbox);
+        vbox.getChildren().add(leMonde.affichageScore());
 
 
 

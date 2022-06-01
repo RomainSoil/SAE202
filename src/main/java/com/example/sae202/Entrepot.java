@@ -17,12 +17,23 @@ public class Entrepot extends Secteur
     private String natureStock;
     private int stock;
     private Robot robot;
+    private int stockInit;
 
     public Entrepot(int x, int y,int nb) {
         this.x = x;
         this.y = y;
         this.numEntrepot=nb;
         natureStock = "nickel";
+        this.stockInit=0;
+        this.stock=0;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     /**
@@ -47,6 +58,7 @@ public class Entrepot extends Secteur
         numEntrepot = ne;
         natureStock = "nickel";
         stock = s;
+
 
     }
 
@@ -170,4 +182,25 @@ public class Entrepot extends Secteur
     public void setNatureStock(String natureStock) {
         this.natureStock = natureStock;
     }
+
+    public int getNumEntrepot() {
+        return numEntrepot;
+    }
+
+    public void setNumEntrepot(int numEntrepot) {
+        this.numEntrepot = numEntrepot;
+    }
+
+    public String getNatureStock() {
+        return natureStock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getStockInit() {
+        return stockInit;
+    }
 }
+

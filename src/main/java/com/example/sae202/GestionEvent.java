@@ -16,6 +16,7 @@ public class GestionEvent implements EventHandler{
 	private GridPane grid;
 	private Mine mine;
 	private VBox vbox;
+	private Entrepot entrepot;
 
 
 
@@ -39,6 +40,7 @@ public class GestionEvent implements EventHandler{
 				try {
 					robot1.Nord(leMonde);
 					leMonde.affichage(grid);
+					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 
 				} catch (DepassementMonde_Exception e) {
@@ -50,6 +52,7 @@ public class GestionEvent implements EventHandler{
 				try {
 					robot1.Sud(leMonde);
 					leMonde.affichage(grid);
+					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
@@ -61,6 +64,7 @@ public class GestionEvent implements EventHandler{
 				try {
 					robot1.Ouest(leMonde);
 					leMonde.affichage(grid);
+					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
@@ -72,6 +76,7 @@ public class GestionEvent implements EventHandler{
 				try {
 					robot1.Est(leMonde);
 					leMonde.affichage(grid);
+					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 				} catch (DepassementMonde_Exception e) {
 					e.printStackTrace();
@@ -81,7 +86,7 @@ public class GestionEvent implements EventHandler{
 			{
 				try {
 					robot1.recolter(mine);
-					leMonde.affichageScore(vbox);
+					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 
 				} catch (DepassementCapaciteExtraction e){
@@ -94,6 +99,22 @@ public class GestionEvent implements EventHandler{
 				catch (CapaciteDeMine e){
 					e.printStackTrace();
 				}
+			}
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Deposer")))
+			{
+				try {
+					robot1.deposer(entrepot);
+					vbox.getChildren().set(0,leMonde.affichageScore());
+					stage.show();}
+				catch (DepassementStockage_Exception e){
+
+					e.printStackTrace();
+				}
+				catch (SecteurContenance_Exception e){
+
+					e.printStackTrace();
+				}
+
 			}
 		}
 
@@ -124,5 +145,9 @@ public class GestionEvent implements EventHandler{
 
 	public void setVbox(VBox vbox) {
 		this.vbox = vbox;
+	}
+
+	public void setEntrepot(Entrepot entrepot) {
+		this.entrepot = entrepot;
 	}
 }

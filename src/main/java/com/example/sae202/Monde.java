@@ -2,6 +2,7 @@ package com.example.sae202;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 
@@ -21,6 +22,19 @@ public class Monde {
     public Entrepot entrepot2;
     public Mine mine1;
     public Mine mine2;
+    private Label Tirob1;
+    private Label Tjrob1;
+    private Label Tirob2;
+    private Label Tjrob2;
+    private Label Tstockrob1;
+    private Label Tstockrob2;
+
+    private Label Tnbminerais1;
+    private Label Tnbminerais2;
+
+    private Label Tstockentrepot1;
+
+    private Label Tstockentrepot2;
 
     public Secteur[][] getLeMonde() {
         return leMonde;
@@ -101,7 +115,7 @@ public class Monde {
 
             leMonde[x][y]= new Mine(x, y,i);
             if(i==0)
-            mine1=((Mine)leMonde[x][y]);
+                mine1=((Mine)leMonde[x][y]);
             if (i==1)
             {
                 ((Mine) leMonde[x][y]).setNatureMinerais("OR");
@@ -180,10 +194,10 @@ public class Monde {
                         grid.getChildren().add(sect);
                     }
                     else {
-                    GridPane sect=((Entrepot) leMonde[i-1][j-1]).Entrepot(grid, i, j, ((Entrepot) leMonde[i-1][j-1]).getNumEnt());
-                    grid.setColumnIndex(sect,i);
-                    grid.setRowIndex(sect,j);
-                    grid.getChildren().add(sect);}
+                        GridPane sect=((Entrepot) leMonde[i-1][j-1]).Entrepot(grid, i, j, ((Entrepot) leMonde[i-1][j-1]).getNumEnt());
+                        grid.setColumnIndex(sect,i);
+                        grid.setRowIndex(sect,j);
+                        grid.getChildren().add(sect);}
 
                 } else if (leMonde[i-1][j-1] instanceof Mine) {
 
@@ -197,10 +211,10 @@ public class Monde {
 
                     }
                     else {
-                    GridPane sect=((Mine) leMonde[i-1][j-1]).Mine(grid, i, j, ((Mine) leMonde[i-1][j-1]).getNumM());
-                    grid.setColumnIndex(sect,i);
-                    grid.setRowIndex(sect,j);
-                    grid.getChildren().add(sect);}
+                        GridPane sect=((Mine) leMonde[i-1][j-1]).Mine(grid, i, j, ((Mine) leMonde[i-1][j-1]).getNumM());
+                        grid.setColumnIndex(sect,i);
+                        grid.setRowIndex(sect,j);
+                        grid.getChildren().add(sect);}
                 }
 
             }
@@ -208,6 +222,31 @@ public class Monde {
 
 
     }
+    public void setTirob1(){
+        Tirob1.setText(String.valueOf(robot1.getX()+1));
+    }
+    public void setTjrob1(){
+        Tjrob1.setText(String.valueOf(robot1.getY()+1));
+    }
+    public void setTirob2(){
+        Tirob2.setText(String.valueOf(robot2.getX()+1));
+    }
+    public void setTjrob2(){
+        Tjrob2.setText(String.valueOf(robot2.getY()+1));
+    }
+
+    public void setTnbminerais1(){Tnbminerais1.setText(String.valueOf(mine1.getNbMinerais()));}
+    public void setTnbminerais2(){Tnbminerais2.setText(String.valueOf(mine2.getNbMinerais()));}
+
+    public void setTstockrob1() {Tstockrob1.setText(String.valueOf(robot1.getStockage()));}
+
+    public void setTstockrob2() {Tstockrob2.setText(String.valueOf(robot2.getStockage()));}
+
+
+    public void setTstockentrepot1(){Tstockentrepot1.setText(String.valueOf(entrepot1.getStock()));}
+    public void setTstockentrepot2(){Tstockentrepot2.setText(String.valueOf(entrepot2.getStock()));}
+
+
 
     private String abreg (String nature){
         if (nature.equals("nickel")) {
@@ -218,7 +257,7 @@ public class Monde {
         }
         return nature;
     }
-    public void affichageScore(VBox vBox2) {;
+    public GridPane affichageScore() {;
         VBox vBox = new VBox();
         vBox.getChildren().add(new Text(" "));
         String AlaLigne = System.getProperty("line.separator");
@@ -232,61 +271,23 @@ public class Monde {
         vBox.getChildren().add(new Text("  "));
 
         /*Mine*/
-        int imine1 = 0;
-        int jmine1 = 0;
-        int imine2 = 0;
-        int jmine2 = 0;
 
-        String naturemine1 = null;
-        String naturemine2 = null;
+        Label Timine1 = new Label(String.valueOf(mine1.getX()));
+        Label Tjmine1 = new Label(String.valueOf(mine1.getY()));
+        Label Timine2 = new Label(String.valueOf(mine2.getX()));
+        Label Tjmine2 = new Label(String.valueOf(mine2.getY()));
 
-        int nbminerais1 = 0;
-        int nbminerais2 = 0;
+        Label Tnaturemine1 = new Label(String.valueOf(abreg(mine1.getNature())));
+        Label Tnaturemine2 = new Label(String.valueOf(abreg(mine2.getNature())));
 
-        int capacitemine1 = 0;
-        int capacitemine2 = 0;
+        Tnbminerais1 = new Label(String.valueOf(mine1.getNbMinerais()));
+        Tnbminerais2 = new Label(String.valueOf(mine2.getNbMinerais()));
 
-        for (int i = 1; i < 11; i++) {
-            for (int j = 1; j < 11; j++) {
-                if (leMonde[i - 1][j - 1] instanceof Mine) {
-                    int res = ((Mine) leMonde[i - 1][j - 1]).getNumM()+1;
-                    if (res == 1) {
-                        imine1 = i;
-                        jmine1 = j;
-                        naturemine1 = ((Mine) leMonde[i - 1][j - 1]).getNature();
-                        naturemine1 = abreg(naturemine1);
-                        nbminerais1 = ((Mine) leMonde[i - 1][j - 1]).getNbMinerais();
-                        capacitemine1 = ((Mine) leMonde[i - 1][j - 1]).getCapInit();
-                    }
-                    if (res == 2){
-                        imine2 = i;
-                        jmine2 = j;
-                        naturemine2 = ((Mine) leMonde[i - 1][j - 1]).getNature();
-                        naturemine2 = abreg(naturemine2);
-                        nbminerais2 = ((Mine) leMonde[i - 1][j - 1]).getNbMinerais();
-                        capacitemine2 = ((Mine) leMonde[i - 1][j - 1]).getCapInit();
-                    }
+        Label Tcapacitemine1 = new Label(String.valueOf(mine1.getCapInit()));
+        Label Tcapacitemine2 = new Label(String.valueOf(mine2.getCapInit()));
 
-                }
-
-            }
-        }
-        Text Timine1 = new Text(String.valueOf(imine1));
-        Text Tjmine1 = new Text(String.valueOf(jmine1));
-        Text Timine2 = new Text(String.valueOf(imine2));
-        Text Tjmine2 = new Text(String.valueOf(jmine2));
-
-        Text Tnaturemine1 = new Text(String.valueOf(naturemine1));
-        Text Tnaturemine2 = new Text(String.valueOf(naturemine2));
-
-        Text Tnbminerais1 = new Text(String.valueOf(nbminerais1));
-        Text Tnbminerais2 = new Text(String.valueOf(nbminerais2));
-
-        Text Tcapacitemine1 = new Text(String.valueOf(capacitemine1));
-        Text Tcapacitemine2 = new Text(String.valueOf(capacitemine2));
-
-        Text Mine = new Text("  M1");
-        Text Mine2 = new Text("  M2");
+        Text Mine = new Text("  M"+(mine1.getNumM()+1));
+        Text Mine2 = new Text("  M"+(mine2.getNumM()+1));
 
         HBox hBoxmine = new HBox();
         VBox vBoxmine = new VBox();
@@ -306,67 +307,33 @@ public class Monde {
 
         /*Entrepot*/
 
-        int ientrepot1 = 0;
-        int jentrepot1 = 0;
-        int ientrepot2 = 0;
-        int jentrepot2 = 0;
 
-        String natureentrepot1 = null;
-        String natureentrepot2 = null;
+        Label Tientrepot1 = new Label(String.valueOf(entrepot1.getX()));
+        Label Tjentrepot1 = new Label(String.valueOf(entrepot1.getY()));
+        Label Tientrepot2 = new Label(String.valueOf(entrepot2.getX()));
+        Label Tjentrepot2 = new Label(String.valueOf(entrepot2.getY()));
 
-        int stockentrepot1 = 0;
-        int stockentrepot2 = 0;
+        Label Tnatureentrepot1 = new Label(String.valueOf(abreg(entrepot1.getNatureE())));
+        Label Tnatureentrepot2= new Label(String.valueOf(abreg(entrepot2.getNatureE())));
 
-        int capacitestockentrepot1 = 170;
-        int capacitestockentrepot2 = 170;
+        Tstockentrepot1 =new Label(String.valueOf(entrepot1.getStock()));
+        Tstockentrepot2 =new Label(String.valueOf(entrepot2.getStock()));
 
-        for (int i1 = 1; i1 < 11; i1++) {
-            for (int j1 = 1; j1 < 11; j1++) {
-                if (leMonde[i1 - 1][j1 - 1] instanceof Entrepot) {
-                    int res1 = ((Entrepot) leMonde[i1 - 1][j1 - 1]).getNumEnt() + 1;
-                    if (res1 == 1) {
-                        ientrepot1 = i1;
-                        jentrepot1 = j1;
-                        natureentrepot1 = ((Entrepot) leMonde[i1 - 1][j1 - 1]).getNatureE();
-                        natureentrepot1 = abreg(natureentrepot1);
-                        stockentrepot1 = ((Entrepot) leMonde[i1 - 1][j1 - 1]).getStock();
-                    }
-                    if (res1 == 2){
-                        ientrepot2 = i1;
-                        jentrepot2 = j1;
-                        natureentrepot2 = ((Entrepot) leMonde[i1 - 1][j1 - 1]).getNatureE();
-                        natureentrepot2 = abreg(natureentrepot2);
-                        stockentrepot2 = ((Entrepot) leMonde[i1 - 1][j1 - 1]).getStock();
-                    }
-                }
-            }
-        }
-        Text Tientrepot1 = new Text(String.valueOf(ientrepot1));
-        Text Tjentrepot1 = new Text(String.valueOf(jentrepot1));
-        Text Tientrepot2 = new Text(String.valueOf(ientrepot2));
-        Text Tjentrepot2 = new Text(String.valueOf(jentrepot2));
+        Label Tcapacitestockentrpot1 = new Label(String.valueOf("170"));
+        Label Tcapacitestockentrpot2 = new Label(String.valueOf("170"));
 
-        Text Tnatureentrepot1 = new Text(String.valueOf(natureentrepot1));
-        Text Tnatureentrepot2= new Text(String.valueOf(natureentrepot2));
-
-        Text Tstockentrepot1 =new Text(String.valueOf(stockentrepot1));
-        Text Tstockentrepot2 =new Text(String.valueOf(stockentrepot2));
-
-        Text Tcapacitestockentrpot1 = new Text(String.valueOf(capacitestockentrepot1));
-        Text Tcapacitestockentrpot2 = new Text(String.valueOf(capacitestockentrepot2));
-
-        Text Entrepot = new Text("  E1");
-        Text Entrepot2 = new Text("  E2");
+        Text Entrepot = new Text("  E"+(entrepot1.getNumEnt()+1));
+        Text Entrepot2 = new Text("  E"+(entrepot2.getNumEnt()+1));
 
         HBox hBoxentreopt1 = new HBox();
         VBox vBoxentrepot1 = new VBox();
-        hBoxentreopt1.getChildren().addAll(Entrepot,new Text("                "),Tientrepot1,new Text(" / "),Tjentrepot1,new Text("                "),
+        hBoxentreopt1.getChildren().addAll(Entrepot,new Text("                 "),Tientrepot1,new Text(" / "),Tjentrepot1,new Text("                "),
                 Tnatureentrepot1,new Text("                "),Tstockentrepot1,new Text(" / "),Tcapacitestockentrpot1);
         vBoxentrepot1.getChildren().add(hBoxentreopt1);
 
         HBox hBoxentreopt2 = new HBox();
         VBox vBoxentrepot2 = new VBox();
-        hBoxentreopt2.getChildren().addAll(Entrepot2,new Text("                "),Tientrepot2,new Text(" / "),Tjentrepot2,new Text("                "),
+        hBoxentreopt2.getChildren().addAll(Entrepot2,new Text("                 "),Tientrepot2,new Text(" / "),Tjentrepot2,new Text("                "),
                 Tnatureentrepot2,new Text("                "),Tstockentrepot2,new Text(" / "),Tcapacitestockentrpot2);
         vBoxentrepot2.getChildren().add(hBoxentreopt2);
 
@@ -378,20 +345,20 @@ public class Monde {
         Text Tidrob1 = new Text(String.valueOf("  R"+robot1.getNumRobot()));
         Text Tidrob2 = new Text(String.valueOf("  R"+robot2.getNumRobot()));
 
-        Text Tirob1 = new Text(String.valueOf( robot1.getX()+1));
-        Text Tjrob1 = new Text(String.valueOf( robot1.getY()+1));
-        Text Tirob2 = new Text(String.valueOf( robot2.getX()+1));
-        Text Tjrob2 = new Text(String.valueOf( robot2.getY()+1));
 
+        Tirob1 = new Label(String.valueOf( robot1.getX()+1));
+        Tjrob1 = new Label(String.valueOf( robot1.getY()+1));
+        Tirob2 = new Label(String.valueOf( robot2.getX()+1));
+        Tjrob2 = new Label(String.valueOf( robot2.getY()+1));
 
-        Text Tnaturerob1 = new Text(abreg(robot1.getType()));
-        Text Tnaturerob2 = new Text(abreg(robot2.getType()));
+        Label Tnaturerob1 = new Label(abreg(robot1.getType()));
+        Label Tnaturerob2 = new Label(abreg(robot2.getType()));
 
-        Text Tstockrob1 = new Text(String.valueOf( robot1.getStockage()));
-        Text Tstockrob2 = new Text(String.valueOf( robot2.getStockage()));
+        Tstockrob1 = new Label(String.valueOf( robot1.getStockage()));
+        Tstockrob2 = new Label(String.valueOf( robot2.getStockage()));
 
-        Text Tcapacitestockrob1 = new Text(String.valueOf( robot1.getCapStock()));
-        Text Tcapacitestockrob2 = new Text(String.valueOf( robot2.getCapStock()));
+        Label Tcapacitestockrob1 = new Label(String.valueOf( robot1.getCapStock()));
+        Label Tcapacitestockrob2 = new Label(String.valueOf( robot2.getCapStock()));
 
 
         HBox hBoxrob1 = new HBox();
@@ -414,19 +381,15 @@ public class Monde {
         tablescore.getColumnConstraints().add(column);
         RowConstraints row = new RowConstraints(600);
         tablescore.getRowConstraints().add(row);
+        vBox.getChildren().add(new Text(" "));
+        vBox.getChildren().add(TA);
         tablescore.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
         tablescore.getChildren().add(vBox);
 
-        vBox2.getChildren().add( tablescore);
-        vBox.getChildren().add(new Text(" "));
-        vBox.getChildren().add(TA);
+        return tablescore;
 
 
     }
 
 
 }
-
-
-
-

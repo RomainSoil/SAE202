@@ -25,6 +25,14 @@ public class Mine extends Secteur {
 
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     /**
      * Constructeur d'objets de classe Mine
      */
