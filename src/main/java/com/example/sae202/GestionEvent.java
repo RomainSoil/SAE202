@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GestionEvent implements EventHandler{
@@ -13,6 +14,12 @@ public class GestionEvent implements EventHandler{
 	private Robot robot1;
 	private Stage stage;
 	private GridPane grid;
+	private Mine mine;
+	private VBox vbox;
+
+
+
+
 	@Override
 	public void handle(Event event) {
 		if(event.getEventType() == MouseEvent.MOUSE_CLICKED)
@@ -20,14 +27,14 @@ public class GestionEvent implements EventHandler{
 			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot1")))
 				robot1=leMonde.robot1;
 
-			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot2")))
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Robot2")))
 				robot1=leMonde.robot2;
 
 
 
 
 
-			if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Nord")))
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Nord")))
 			{
 				try {
 					robot1.Nord(leMonde);
@@ -70,6 +77,24 @@ public class GestionEvent implements EventHandler{
 					e.printStackTrace();
 				}
 			}
+			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Extraire")))
+			{
+				try {
+					robot1.recolter(mine);
+					leMonde.affichageScore(vbox);
+					stage.show();
+
+				} catch (DepassementCapaciteExtraction e){
+
+				e.printStackTrace();
+			}
+				catch (DepassementStockage_Exception e){
+					e.printStackTrace();
+				}
+				catch (CapaciteDeMine e){
+					e.printStackTrace();
+				}
+			}
 		}
 
 
@@ -92,5 +117,12 @@ public class GestionEvent implements EventHandler{
 		this.robot1 = rob;
 	}
 
+	public void setMine(Mine mine) {
+		this.mine = mine;
+	}
 
+
+	public void setVbox(VBox vbox) {
+		this.vbox = vbox;
+	}
 }

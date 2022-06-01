@@ -28,6 +28,8 @@ public class Main extends Application {
     static GridPane grid;
     static GridPane sect;
     private GestionEvent gestionEvent;
+    private GridPane affiche;
+
 
     public void start(final Stage stage) throws Exception {
 
@@ -74,6 +76,8 @@ public class Main extends Application {
         HBox hboxFin= new HBox();
         HBox hbox= new HBox();
         VBox vbox= new VBox();
+        HBox hboxR = new HBox();
+        HBox ExtDep = new HBox();
         Pane pan = new Pane();
 
         hboxFin.getChildren().add(grid);
@@ -84,24 +88,28 @@ public class Main extends Application {
         Button Est= new Button("Est");
         Button Robot1=new Button("Robot1");
         Button Robot2=new Button("Robot2");
+        Button Extraire =new Button("Extraire");
+        Button Deposer =new Button("Deposer");
 
         Nord.setLayoutX(43);
         hbox.setLayoutY(25);
-
+        hboxR.getChildren().add(Robot1);
+        hboxR.getChildren().add(Robot2);
+        ExtDep.getChildren().add(Extraire);
+        ExtDep.getChildren().add(Deposer);
         hbox.getChildren().add(Ouest);
         pan.getChildren().add(Nord);
         hbox.getChildren().add(Sud);
         hbox.getChildren().add(Est);
         group.getChildren().addAll(pan,hbox);
-        vbox.getChildren().add(group);
-        vbox.getChildren().add(Robot1);
-        vbox.getChildren().add(Robot2);
+
 
 
         gestionEvent=new GestionEvent();
         gestionEvent.setLeMonde(leMonde);
         gestionEvent.setStage(stage);
         gestionEvent.setGrid(grid);
+        gestionEvent.setMine(leMonde.mine1);
 
         Nord.setOnMouseClicked(gestionEvent);
         Sud.setOnMouseClicked(gestionEvent);
@@ -109,33 +117,18 @@ public class Main extends Application {
         Est.setOnMouseClicked(gestionEvent);
         Robot1.setOnMouseClicked(gestionEvent);
         Robot2.setOnMouseClicked(gestionEvent);
+        Extraire.setOnMouseClicked(gestionEvent);
+        Deposer.setOnMouseClicked(gestionEvent);
 
-        /*final Image img1= new Image(getClass().getResource("flecheHaut.png").toExternalForm());
-        final ImageView icon1= new ImageView(img1);
-        avancer.setGraphic(icon1);
+        gestionEvent.setVbox(vbox);
+        leMonde.affichageScore(vbox);
 
-        final Image img2= new Image(getClass().getResource("flecheB.png").toExternalForm());
-        final ImageView icon2= new ImageView(img2);
-        reculer.setGraphic(icon2);
 
-        final Image img3= new Image(getClass().getResource("flecheG.png").toExternalForm());
-        final ImageView icon3= new ImageView(img3);
-        gauche.setGraphic(icon3);
 
-        final Image img4= new Image(getClass().getResource("flecheD.png").toExternalForm());
-        final ImageView icon4= new ImageView(img4);
-        droite.setGraphic(icon4);*/
-        VBox vBoxT = new VBox();
-        VBox affiche = leMonde.affichageScore(vBoxT);
-        GridPane tablescore = new GridPane();
-        tablescore.setAlignment(Pos.CENTER);
-        ColumnConstraints column = new ColumnConstraints(400);
-        tablescore.getColumnConstraints().add(column);
-        RowConstraints row = new RowConstraints(600);
-        tablescore.getRowConstraints().add(row);
-        tablescore.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
-        tablescore.getChildren().add(affiche);
-        vbox.getChildren().add(tablescore);
+
+        vbox.getChildren().add(group);
+        vbox.getChildren().add(hboxR);
+        vbox.getChildren().add(ExtDep);
 
 
         hboxFin.getChildren().add(vbox);

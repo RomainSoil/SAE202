@@ -10,7 +10,7 @@ public class Mine extends Secteur {
     private int x;
     private int y;
     private int numMine;
-    private int nbMinerais;
+    public int nbMinerais;
     private String natureMinerais;
     private int capaciteInit;
     private Robot robot;

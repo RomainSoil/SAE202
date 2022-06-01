@@ -17,9 +17,9 @@ public class Robot
     private int capExtraction;
     private int nbMinAct;
     private int Stockage;
-    private int Extraction;
+    private static int Extraction =3;
 
-    public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc, String type)
+    public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc, String type, int ext)
     {
         this.x=x;
         this.y=y;
@@ -29,7 +29,7 @@ public class Robot
         nbMinAct = nbM;
         Stockage = stc;
         Type = type;
-        Extraction = 0+(int)(Math.random()*((4-0)+1)) ;
+        Extraction = ext ;
 
     }
 
@@ -55,15 +55,18 @@ public class Robot
 
     public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
-        if (Stockage < capStokage && Extraction < capExtraction && mine.getNbMinerais() > 0)
+        System.out.println("ouhouh");
+        if (Stockage < capStokage &&  mine.getNbMinerais() > 0)
         {
-            Extraction -=1;
-            Stockage -=1;
-            mine.ExtractionMinerais();
+            Stockage +=3;
+            mine.nbMinerais-=3;
+            System.out.println(Stockage);
+            System.out.println(mine.nbMinerais);
+
 
         }
         if (capStokage < 1 || capStokage < Stockage){
-            DepassementStockage_Exception depStock = new DepassementStockage_Exception("Votre capacité de stockage est pleine");
+            DepassementStockage_Exception depStock = new DepassementStockage_Exception("Votre stockage est plein");
             throw depStock;}
         if (capExtraction <1 ){
             DepassementCapaciteExtraction depExtract = new DepassementCapaciteExtraction("Votre capacité d'extraction est dépassé");
@@ -133,5 +136,13 @@ public class Robot
 
     public int getY() {
         return y;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public int getStockage() {
+        return Stockage;
     }
 }
