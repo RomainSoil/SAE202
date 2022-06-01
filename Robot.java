@@ -6,12 +6,11 @@ public class Robot
     private int x;
     private int y;
     private int  numRobot;
-    private int capStokage;
+    private int capStockage;
     private int capExtraction;
     private int nbMinAct;
     private int Stockage;
     private int Extraction;
-    private Secteur sonSecteur;
     private String natureExtrac;
 
     public Robot(int x, int y, int num, int cS, int cE, int nbM, int stc, String ext)
@@ -19,7 +18,7 @@ public class Robot
         this.x=x;
         this.y=y;
         numRobot = num;
-        capStokage = cS;
+        capStockage = cS;
         capExtraction = cE;
         nbMinAct = nbM;
         Stockage = stc;
@@ -28,68 +27,128 @@ public class Robot
 
     }
 
-    public int getNumRobot()
-    {
-        return this.numRobot;
-    }
 
-    public int getMinAct()
-    {
-        return this.nbMinAct;
-    }
+	public int getX() {
+		return x;
+	}
 
-    public int getCapStock()
-    {
-        return this.capStokage;
-    }
 
-    public int getCapExtract()
-    {
-        return this.capExtraction;
-    }
+	public void setX(int x) {
+		this.x = x;
+	}
 
-    public String getNatureExtrac() {
+
+	public int getY() {
+		return y;
+	}
+
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+	public int getNumRobot() {
+		return numRobot;
+	}
+
+
+	public void setNumRobot(int numRobot) {
+		this.numRobot = numRobot;
+	}
+
+
+	public int getCapStockage() {
+		return capStockage;
+	}
+
+
+	public void setCapStokage(int capStokage) {
+		this.capStockage = capStockage;
+	}
+
+
+	public int getCapExtraction() {
+		return capExtraction;
+	}
+
+
+	public void setCapExtraction(int capExtraction) {
+		this.capExtraction = capExtraction;
+	}
+
+
+	public int getNbMinAct() {
+		return nbMinAct;
+	}
+
+
+	public void setNbMinAct(int nbMinAct) {
+		this.nbMinAct = nbMinAct;
+	}
+
+
+	public int getStockage() {
+		return Stockage;
+	}
+
+
+	public void setStockage(int stockage) {
+		Stockage = stockage;
+	}
+
+
+	public int getExtraction() {
+		return Extraction;
+	}
+
+
+	public void setExtraction(int extraction) {
+		Extraction = extraction;
+	}
+
+
+	public String getNatureExtrac() {
 		return natureExtrac;
 	}
+
 
 	public void setNatureExtrac(String natureExtrac) {
 		this.natureExtrac = natureExtrac;
 	}
 
+
 	public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
-        if (Stockage < capStokage && Extraction < capExtraction && mine.getNbMinerais() > 0)
+      if(Stockage == capStockage && Extraction == capExtraction){
+		if (Stockage <= capStockage && Extraction <= capExtraction && mine.getNbMinerais() > 0)
         {
             Extraction -=1;
             Stockage -=1;
             mine.ExtractionMinerais();
 
         }
-        if (capStokage < 1 || capStokage < Stockage){
+        if (capStockage < 1 || capStockage < Stockage){
             DepassementStockage_Exception depStock = new DepassementStockage_Exception("Votre capacité de stockage est pleine");
             throw depStock;}
-        if (capExtraction <1 ){
+        if (capExtraction <1 || capExtraction < Extraction){
             DepassementCapaciteExtraction depExtract = new DepassementCapaciteExtraction("Votre capacité d'extraction est dépassé");
             throw depExtract;}
         if (mine.getNbMinerais() < 1){
             CapaciteDeMine CapMine = new CapaciteDeMine("Il n'y a plus de Minerais dans la mine");
             throw CapMine;}
 
-     
+    }
     }
     
     public void deposer(Entrepot entrepot) throws DepassementStockage_Exception, SecteurContenance_Exception
     {
-    	if (this.sonSecteur instanceof Entrepot)
-    	{
+    	while (entrepot.getStockInit() > entrepot.getStockAct()) {
     		if (!( entrepot.getStockInit() == 0) && (!(entrepot.getStockInit() - entrepot.getStockAct() == 0)) && entrepot.getNatureStock().equals(this.getNatureExtrac()) )
     		{
-    		entrepot.getStockAct() = entrepot.getStockAct() + this.nbMinAct;
-    		entrepot.getStockInit() = entrepot.getStockInit - entrepot.getStockAct();
-    		Random2 rand = new Random2(5,9);
-    		Random2 rand2 = new Random2(1,3);
-    		this.capStokage = rand.getValue();
-    		this.capExtraction = rand2.getValue();
+    		entrepot.setStockAct(entrepot.getStockAct() + this.nbMinAct);
+    		this.setStockage(capStockage);
+    		this.setExtraction(capExtraction);
     		}
     	}
     	if (entrepot.getStockInit() - this.nbMinAct < 0 || entrepot.getStockInit() - entrepot.getStockAct() < 0)
@@ -99,43 +158,63 @@ public class Robot
     	}
     	if ((!(entrepot.getNatureStock().equals(this.getNatureExtrac()))))
     	{
-    		SecteurContenance_Exception SC = new SecteurContenance_Exception(" Le type de minerais du robot n'est pas bon !");
+    		SecteurContenance_Exception SC = new SecteurContenance_Exception();
     		throw SC;
     				
     	}
     }
     
-    public void Nord() throws DepassementMonde_Exception {
+    public void Nord(Monde leMonde) throws DepassementMonde_Exception {
+
+        if (this.y == 0 || leMonde.leMonde[x][y-1] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
+            throw DE;
+        }
+        else{
+        leMonde.leMonde[x][y].setrobot2();
+        this.y = this.y-1;
+        leMonde.leMonde[x][y].setrobot1(this);}
+
+
+    }
+
+    public void Sud (Monde leMonde) throws DepassementMonde_Exception {
+
+        if (this.y == 10 || leMonde.leMonde[x][y+1] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
+            throw DE;
+        }
+        else
+        {
+        leMonde.leMonde[x][y].setrobot2();
         this.y = this.y + 1;
-        if (this.y == 0) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
-            throw DE;
-        }
+        leMonde.leMonde[x][y].setrobot1(this);}
     }
 
-    public void Sud () throws DepassementMonde_Exception {
-        this.y = this.y - 1;
-        if (this.y == 10) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
-            throw DE;
-        }
-    }
-
-    public void Ouest ()throws DepassementMonde_Exception
-    { this.x = this.x - 1;
-        if (this.x == 0) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
-            throw DE;
-        }
-    }
-
-    public void Est ()throws DepassementMonde_Exception
+    public void Ouest (Monde leMonde)throws DepassementMonde_Exception
     {
-        this.x = this.x + 1;
-        if (this.x == 10) {
-            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous avez ne pouvé pas aller plus loin !");
+        if (this.x == 0 || leMonde.leMonde[x-1][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+        else{
+        leMonde.leMonde[x][y].setrobot2();
+        this.x = this.x - 1;
+        leMonde.leMonde[x][y].setrobot1(this);}
+
+    }
+
+    public void Est (Monde leMonde)throws DepassementMonde_Exception
+    {
+        if (this.x == 10 || leMonde.leMonde[x+1][y] instanceof PlanDeau) {
+            DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
+            throw DE;
+        }
+        else {
+        leMonde.leMonde[x][y].setrobot2();
+        this.x = this.x + 1;
+        leMonde.leMonde[x][y].setrobot1(this);}
+
     }
 
 }
