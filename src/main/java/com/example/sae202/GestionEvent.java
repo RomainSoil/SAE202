@@ -133,20 +133,7 @@ public class GestionEvent implements EventHandler{
 					vbox.getChildren().set(0,leMonde.affichageScore());
 					stage.show();
 
-					if (leMonde.mine1.getNbMinerais()<2&&leMonde.mine2.getNbMinerais()<2)
-					{
-						Text win = new Text("VOUS AVEZ GAGNÉ !");
-						win.setTextAlignment(TextAlignment.CENTER);
-						StackPane vBoxWin = new StackPane();
-						vBoxWin.getChildren().add(win);
-						vBoxWin.setAlignment(win, Pos.CENTER);
-						Scene scnWin = new Scene(vBoxWin,500,200);
-						Stage stageWin =new Stage();
-						stageWin.setScene(scnWin);
-						stageWin.sizeToScene();
-						stageWin.setTitle("VICTOIRE");
-						stageWin.show();
-					}
+
 
 				} catch (DepassementCapaciteExtraction e){
 
@@ -164,7 +151,23 @@ public class GestionEvent implements EventHandler{
 				try {
 					robot1.deposer(entrepot);
 					vbox.getChildren().set(0,leMonde.affichageScore());
-					stage.show();}
+					stage.show();
+					if (leMonde.mine1.getNbMinerais()==0 &&leMonde.mine2.getNbMinerais()==0 && leMonde.robot1.getStockage()==0 && leMonde.robot2.getStockage()==0)
+					{
+						Text win = new Text("VOUS AVEZ GAGNÉ !");
+						win.setTextAlignment(TextAlignment.CENTER);
+						StackPane vBoxWin = new StackPane();
+						vBoxWin.getChildren().add(win);
+						vBoxWin.setAlignment(win, Pos.CENTER);
+						Scene scnWin = new Scene(vBoxWin,500,200);
+						Stage stageWin =new Stage();
+						stageWin.setScene(scnWin);
+						stageWin.sizeToScene();
+						stageWin.setTitle("VICTOIRE");
+						stageWin.show();
+					}
+
+				}
 				catch (DepassementStockage_Exception e){
 
 					e.printStackTrace();

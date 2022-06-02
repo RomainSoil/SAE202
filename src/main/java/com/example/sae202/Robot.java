@@ -56,24 +56,31 @@ public class Robot
     public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
 
-        if (Stockage+capExtraction<capStokage &&mine.getNature().equals(this.getType()))
-        {
-            Stockage +=3;
-            mine.nbMinerais-=3;
-            System.out.println(Stockage);
-            System.out.println(mine.nbMinerais);
-
-
+        if (Stockage+3<=capStokage &&mine.getNature().equals(this.getType())&&mine.getNbMinerais()>=3) {
+            Stockage += 3;
+            mine.nbMinerais -= 3;
         }
+        else if (mine.getNature().equals(this.getType()) && mine.getNbMinerais()<3 && Stockage+mine.getNbMinerais()<=capStokage)
+        {
+            Stockage+=mine.getNbMinerais();
+            mine.nbMinerais=0;
+        }
+
+        else if (mine.getNature().equals(this.getType())&& Stockage<capStokage && Stockage+3>capStokage)
+        {
+            int nb=capStokage-Stockage;
+            Stockage+=nb;
+            mine.nbMinerais-=nb;
+        }
+
+
         if (capStokage < 1 || capStokage < Stockage){
             DepassementStockage_Exception depStock = new DepassementStockage_Exception("Votre stockage est plein");
             throw depStock;}
         if (capExtraction <1 ){
             DepassementCapaciteExtraction depExtract = new DepassementCapaciteExtraction("Votre capacité d'extraction est dépassé");
             throw depExtract;}
-        if (mine.getNbMinerais() < 1){
-            CapaciteDeMine CapMine = new CapaciteDeMine("Il n'y a plus de Minerais dans la mine");
-            throw CapMine;}
+
 
 
     }
