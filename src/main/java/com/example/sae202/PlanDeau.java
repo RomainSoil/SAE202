@@ -43,7 +43,7 @@ public class PlanDeau extends Secteur{
         }
 
 
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        sect.setStyle("-fx-background-color: #25fde9; -fx-grid-lines-visible: true");
         return sect;
     }
 

@@ -37,7 +37,7 @@ public class Entrepot extends Secteur
     }
 
     /**
-     * Constructeur d'objets de classe Entrepôt
+     * Constructeur d'objets de classe EntrepÃ´t
      */
 
 
@@ -106,7 +106,12 @@ public class Entrepot extends Secteur
                 sect.getChildren().add(txt);
             }}
 
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        if (getNatureStock().equals("nickel")) {
+            sect.setStyle("-fx-background-color: #c0c0c0; -fx-grid-lines-visible: true");
+        }
+        else if (getNatureStock().equals("OR")){
+            sect.setStyle("-fx-background-color: #e9d9c6; -fx-grid-lines-visible: true");
+        }
         return sect;
 
 
@@ -154,8 +159,12 @@ public class Entrepot extends Secteur
                 sect.getChildren().add(txt);
             }}
 
-
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        if (getNatureStock().equals("nickel")) {
+            sect.setStyle("-fx-background-color: #c0c0c0; -fx-grid-lines-visible: true");
+        }
+        else if (getNatureStock().equals("OR")){
+            sect.setStyle("-fx-background-color: #e9d9c6; -fx-grid-lines-visible: true");
+        }
         return sect;
 
 
@@ -203,4 +212,3 @@ public class Entrepot extends Secteur
         return stockInit;
     }
 }
-

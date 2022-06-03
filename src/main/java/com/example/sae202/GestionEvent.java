@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class GestionEvent implements EventHandler{
 	private Monde leMonde;
@@ -46,8 +48,7 @@ public class GestionEvent implements EventHandler{
 
 
 
-
-			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Nord")))
+			else if(((event.getSource() instanceof Button) && (event.getSource().toString().contains("Nord"))))
 			{
 				try {
 					robot1.Nord(leMonde);
@@ -128,6 +129,7 @@ public class GestionEvent implements EventHandler{
 			}
 			else if((event.getSource() instanceof Button) && (event.getSource().toString().contains("Extraire")))
 			{
+
 				try {
 					robot1.recolter(mine);
 					vbox.getChildren().set(0,leMonde.affichageScore());

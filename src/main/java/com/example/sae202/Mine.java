@@ -99,9 +99,12 @@ public class Mine extends Secteur {
             }
         }
 
-
-
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        if (getNature().equals("nickel")) {
+            sect.setStyle("-fx-background-color: #c0c0c0; -fx-grid-lines-visible: true");
+        }
+        else if (getNature().equals("OR")){
+            sect.setStyle("-fx-background-color: #e9d9c6; -fx-grid-lines-visible: true");
+        }
         return sect;
 
 
@@ -151,8 +154,12 @@ public class Mine extends Secteur {
                 sect.getChildren().add(txt);
             }}
 
-
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        if (getNature().equals("nickel")) {
+            sect.setStyle("-fx-background-color: #c0c0c0; -fx-grid-lines-visible: true");
+        }
+        else if (getNature().equals("OR")){
+            sect.setStyle("-fx-background-color: #e9d9c6; -fx-grid-lines-visible: true");
+        }
         return sect;
 
 

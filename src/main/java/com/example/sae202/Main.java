@@ -1,25 +1,20 @@
 package com.example.sae202;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -30,7 +25,14 @@ public class Main extends Application {
     static GridPane grid;
     static GridPane sect;
     private GestionEvent gestionEvent;
-    private GridPane affiche;
+
+
+
+    private Robot robot1;
+    private Stage stage;
+    private Mine mine;
+    private VBox vbox;
+    private Entrepot entrepot;
 
 
     public void start(final Stage stage) throws Exception {
@@ -142,6 +144,165 @@ public class Main extends Application {
 
         grid.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
         Scene scene = new Scene(hboxFin,Color.WHITE);
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event) {
+
+                if(event.getCode() == KeyCode.X)
+                {
+                    robot1=leMonde.robot1;
+
+                }
+
+                else if(event.getCode() == KeyCode.C) {
+                    robot1 = leMonde.robot2;
+
+                }
+
+
+
+
+
+                else if(event.getCode() == KeyCode.Z)
+                {
+                    try {
+                        leMonde.tour = leMonde.tour +1;
+                        robot1.Nord(leMonde);
+                        leMonde.affichage(grid);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+                            mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+                            entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+
+
+                        stage.show();
+
+                    } catch (DepassementMonde_Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if(event.getCode() == KeyCode.S)
+                {
+                    try {
+                        leMonde.tour = leMonde.tour+1 ;
+                        robot1.Sud(leMonde);
+                        leMonde.affichage(grid);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+                            mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+                            entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+
+                        stage.show();
+                    } catch (DepassementMonde_Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                else if(event.getCode() == KeyCode.Q)
+                {
+                    try {
+                        leMonde.tour = leMonde.tour +1;
+                        robot1.Ouest(leMonde);
+                        leMonde.affichage(grid);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+                            mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+                            entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+
+                        stage.show();
+                    } catch (DepassementMonde_Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                else if(event.getCode() == KeyCode.D)
+                {
+                    try {
+                        leMonde.tour = leMonde.tour +1 ;
+                        robot1.Est(leMonde);
+                        leMonde.affichage(grid);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Mine) {
+                            mine=((Mine)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+                        if (leMonde.leMonde[robot1.getX()][robot1.getY()] instanceof Entrepot) {
+                            entrepot=((Entrepot)leMonde.leMonde[robot1.getX()][robot1.getY()]);
+                        }
+
+                        stage.show();
+                    } catch (DepassementMonde_Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else if(event.getCode() == KeyCode.J)
+                {
+                    try {
+                        robot1.recolter(mine);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+                        stage.show();
+
+
+
+                    } catch (DepassementCapaciteExtraction e){
+
+                        e.printStackTrace();
+                    }
+                    catch (DepassementStockage_Exception e){
+                        e.printStackTrace();
+                    }
+                    catch (CapaciteDeMine e){
+                        e.printStackTrace();
+                    }
+                }
+                else if(event.getCode() == KeyCode.K)
+                {
+                    try {
+                        robot1.deposer(entrepot);
+                        vbox.getChildren().set(0,leMonde.affichageScore());
+                        stage.show();
+                        if (leMonde.mine1.getNbMinerais()==0 &&leMonde.mine2.getNbMinerais()==0 && leMonde.robot1.getStockage()==0 && leMonde.robot2.getStockage()==0)
+                        {
+                            Text win = new Text("VOUS AVEZ GAGNÉ !");
+                            win.setTextAlignment(TextAlignment.CENTER);
+                            StackPane vBoxWin = new StackPane();
+                            vBoxWin.getChildren().add(win);
+                            vBoxWin.setAlignment(win, Pos.CENTER);
+                            Scene scnWin = new Scene(vBoxWin,500,200);
+                            Stage stageWin =new Stage();
+                            stageWin.setScene(scnWin);
+                            stageWin.sizeToScene();
+                            stageWin.setTitle("VICTOIRE");
+                            stageWin.show();
+                        }
+
+                    }
+                    catch (DepassementStockage_Exception e){
+
+                        e.printStackTrace();
+                    }
+                    catch (SecteurContenance_Exception e){
+
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+
+        });
+
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();

@@ -1,6 +1,8 @@
 package com.example.sae202;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -39,7 +41,7 @@ public class Terrain extends Secteur{
 
 
 
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        sect.setStyle("-fx-background-color: #87e990; -fx-grid-lines-visible: true");
         return sect;
     }
 
@@ -62,8 +64,18 @@ public class Terrain extends Secteur{
         }
         for (int i = 1; i < 2; i++) {
             for (int j = 0; j < 1; j++) {
-                Text text = new Text("    R");
-                Text txt = new Text("  "+String.valueOf(robot.getNumRobot()));
+                Label text = new Label("    R");
+                if(robot.getType().equals("nickel")) {
+                    text.setStyle("-fx-text-fill: #868992;-fx-font-weight: bold");
+                } else if (robot.getType().equals("OR")) {
+                    text.setStyle("-fx-text-fill: #ab911d;-fx-font-weight: bold");
+                }
+                Label txt = new Label("  "+String.valueOf(robot.getNumRobot()));
+                if(robot.getType().equals("nickel")) {
+                    txt.setStyle("-fx-text-fill: #868992;-fx-font-weight: bold");
+                } else if (robot.getType().equals("OR")) {
+                    txt.setStyle("-fx-text-fill: #ab911d;-fx-font-weight: bold");
+                }
                 sect.setColumnIndex(text, j);
                 sect.setColumnIndex(txt,j+1);
                 sect.setRowIndex(text, i);
@@ -74,7 +86,7 @@ public class Terrain extends Secteur{
 
 
 
-        sect.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
+        sect.setStyle("-fx-background-color: #87e990; -fx-grid-lines-visible: true");
         return sect;
     }
 

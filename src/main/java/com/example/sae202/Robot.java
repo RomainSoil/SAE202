@@ -56,17 +56,17 @@ public class Robot
     public void recolter(Mine mine) throws DepassementStockage_Exception,DepassementCapaciteExtraction,CapaciteDeMine
     {
 
-        if (Stockage+3<=capStokage &&mine.getNature().equals(this.getType())&&mine.getNbMinerais()>=3) {
+        if (Stockage+3<=capStokage &&mine.getNature().equals(this.getType())&&mine.getNbMinerais()>=3 && mine.getRobotPresent()==true) {
             Stockage += 3;
             mine.nbMinerais -= 3;
         }
-        else if (mine.getNature().equals(this.getType()) && mine.getNbMinerais()<3 && Stockage+mine.getNbMinerais()<=capStokage)
+        else if (mine.getNature().equals(this.getType()) && mine.getNbMinerais()<3 && Stockage+mine.getNbMinerais()<=capStokage && mine.getRobotPresent()==true)
         {
             Stockage+=mine.getNbMinerais();
             mine.nbMinerais=0;
         }
 
-        else if (mine.getNature().equals(this.getType())&& Stockage<capStokage && Stockage+3>capStokage)
+        else if (mine.getNature().equals(this.getType())&& Stockage<capStokage && Stockage+3>capStokage && mine.getRobotPresent()==true)
         {
             int nb=capStokage-Stockage;
             Stockage+=nb;
@@ -87,7 +87,7 @@ public class Robot
 
     public void deposer(Entrepot entrepot) throws DepassementStockage_Exception, SecteurContenance_Exception
     {
-        if (entrepot.getNatureStock().equals(this.getType()) )
+        if (entrepot.getNatureStock().equals(this.getType()) && entrepot.getRobotPresent()==true )
             {
                 entrepot.setStock(entrepot.getStock() + this.getStockage());
 
@@ -100,7 +100,7 @@ public class Robot
             DepassementStockage_Exception DS = new DepassementStockage_Exception("Le stockage est devenu négatif !");
             throw DS;
         }*/
-        if ((!(entrepot.getNatureStock().equals(this.getType()))))
+        if ((!(entrepot.getNatureStock().equals(this.getType())))&& entrepot.getRobotPresent()==true)
         {
             SecteurContenance_Exception SC = new SecteurContenance_Exception();
             throw SC;
@@ -113,6 +113,7 @@ public class Robot
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }
+
         else{
         leMonde.leMonde[x][y].setrobot2();
         this.y = this.y-1;
