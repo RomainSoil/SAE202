@@ -129,7 +129,7 @@ public class Robot
 
     public void Sud (Monde leMonde) throws DepassementMonde_Exception {
 
-        if (this.y == 10 || leMonde.leMonde[x][y+1] instanceof PlanDeau) {
+        if (this.y ==10  || leMonde.leMonde[x][y+1] instanceof PlanDeau) {
             DepassementMonde_Exception DE = new DepassementMonde_Exception("Vous ne pouvez pas aller plus loin !");
             throw DE;
         }

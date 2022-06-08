@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -25,17 +24,17 @@ public class Main extends Application {
     static GridPane grid;
     static GridPane sect;
     private GestionEvent gestionEvent;
+    private Resolution res;
 
 
 
     private Robot robot1;
-    private Stage stage;
     private Mine mine;
     private VBox vbox;
     private Entrepot entrepot;
 
 
-    public void start(final Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception {
 
 
         int rows = 11;
@@ -74,10 +73,12 @@ public class Main extends Application {
         }
 
         this.leMonde=new Monde();
-
-
-
         leMonde.affichage(grid);
+
+
+
+
+
 
         HBox hboxFin= new HBox();
         HBox hbox= new HBox();
@@ -118,6 +119,12 @@ public class Main extends Application {
         gestionEvent.setMine(leMonde.mine1);
         gestionEvent.setEntrepot(leMonde.entrepot1);
 
+        res= new Resolution();
+        res.setMonde(leMonde);
+        res.setGrid(grid);
+        res.setStage(stage);
+
+
         Nord.setOnMouseClicked(gestionEvent);
         Sud.setOnMouseClicked(gestionEvent);
         Ouest.setOnMouseClicked(gestionEvent);
@@ -128,7 +135,9 @@ public class Main extends Application {
         Deposer.setOnMouseClicked(gestionEvent);
 
         gestionEvent.setVbox(vbox);
+        res.setVbox(vbox);
         vbox.getChildren().add(leMonde.affichageScore());
+
 
 
 
@@ -144,6 +153,7 @@ public class Main extends Application {
 
         grid.setStyle("-fx-background-color: white; -fx-grid-lines-visible: true");
         Scene scene = new Scene(hboxFin,Color.WHITE);
+
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
@@ -306,6 +316,9 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();
+        res.Resolution1();
+
+
 
 
     }

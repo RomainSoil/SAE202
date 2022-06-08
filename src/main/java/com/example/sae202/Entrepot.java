@@ -79,8 +79,6 @@ public class Entrepot extends Secteur
 
     public GridPane Entrepot(GridPane sect,int x, int y, int numEntrepot) {
 
-        this.x=x;
-        this.y=y;
         int rows1 = 2;
         int columns1 = 2;
         sect = new GridPane();
@@ -120,8 +118,7 @@ public class Entrepot extends Secteur
 
     public GridPane Entrepot2(GridPane sect,int x, int y, int numEntrepot) {
 
-        this.x=x;
-        this.y=y;
+
         int rows1 = 2;
         int columns1 = 2;
         sect = new GridPane();

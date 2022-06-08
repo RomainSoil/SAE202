@@ -19,7 +19,7 @@ public class Mine extends Secteur {
         this.x = x;
         this.y = y;
         numMine = nb;
-        nbMinerais = new Random2(50,100).getValue();
+        nbMinerais = new Random2(10,20).getValue();
         natureMinerais = "nickel";
         capaciteInit = this.getNbMinerais();
 
@@ -71,8 +71,7 @@ public class Mine extends Secteur {
 
     public GridPane Mine(GridPane sect, int x, int y, int numEntrepot) {
 
-        this.x = x;
-        this.y = y;
+
         int rows1 = 2;
         int columns1 = 2;
         sect = new GridPane();
@@ -114,8 +113,7 @@ public class Mine extends Secteur {
 
     public GridPane Mine2(GridPane sect, int x, int y, int numEntrepot) {
 
-        this.x = x;
-        this.y = y;
+
         int rows1 = 2;
         int columns1 = 2;
         sect = new GridPane();

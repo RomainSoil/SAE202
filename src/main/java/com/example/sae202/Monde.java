@@ -60,7 +60,7 @@ public class Monde {
             }
         }
 
-        Random2 random2 = new Random2(1, 10);
+        Random2 random2 = new Random2(5,8);
         int g = random2.getValue();
         for (int i = 0; i <= g; i++) {
             Random2 randomX = new Random2(0, 10);
@@ -72,7 +72,7 @@ public class Monde {
                 y = new Random2(0, 10).getValue();
             }
 
-
+            System.out.println("X: "+ x + " Y: "+y);
             leMonde[x][y] = new PlanDeau(x, y);
 
         }
@@ -83,8 +83,8 @@ public class Monde {
             int x = randomX.getValue();
             int y = randomY.getValue();
             while (this.EstPasLibre(x, y)) {
-                x = new Random2(0, 10).getValue();
-                y = new Random2(0, 10).getValue();
+                x = new Random2(1,9 ).getValue();
+                y = new Random2(1,9).getValue();
             }
 
 
@@ -99,13 +99,13 @@ public class Monde {
             }
         }
         for (int i = 0; i < 2; i++) {
-            Random2 randomX2 = new Random2(0, 10);
-            Random2 randomY2 = new Random2(0, 10);
+            Random2 randomX2 = new Random2(1,9);
+            Random2 randomY2 = new Random2(1, 9);
             int x = randomX2.getValue();
             int y = randomY2.getValue();
             while (this.EstPasLibre(x, y)) {
-                x = new Random2(0, 10).getValue();
-                y = new Random2(0, 10).getValue();
+                x = new Random2(1,9).getValue();
+                y = new Random2(1,9).getValue();
             }
 
             leMonde[x][y] = new Mine(x, y, i);
@@ -120,13 +120,13 @@ public class Monde {
 
         }
 
-        Random2 randomX2 = new Random2(0, 10);
-        Random2 randomY2 = new Random2(0, 10);
+        Random2 randomX2 = new Random2(1, 9);
+        Random2 randomY2 = new Random2(1, 9);
         int x = randomX2.getValue();
         int y = randomY2.getValue();
         while (this.EstPasLibre(x, y)) {
-            x = new Random2(0, 10).getValue();
-            y = new Random2(0, 10).getValue();
+            x = new Random2(1,9).getValue();
+            y = new Random2(1,9).getValue();
         }
 
         Random2 CS1 = new Random2(5, 10);
@@ -137,13 +137,13 @@ public class Monde {
         robot1 = new Robot(x, y, 1, CapStock1, CapEx1, 1, 0, "nickel");
         leMonde[x][y].setrobot1(robot1);
 
-        Random2 randomX3 = new Random2(0, 10);
-        Random2 randomY3 = new Random2(0, 10);
+        Random2 randomX3 = new Random2(1,9);
+        Random2 randomY3 = new Random2(1,9);
         int X = randomX3.getValue();
         int Y = randomY3.getValue();
         while (this.EstPasLibre(X, Y)) {
-            X = new Random2(0, 10).getValue();
-            Y = new Random2(0, 10).getValue();
+            X = new Random2(1,9).getValue();
+            Y = new Random2(1,9).getValue();
         }
         Random2 CS2 = new Random2(8, 12);
         int CapStock2 = CS2.getValue();
@@ -283,10 +283,10 @@ public class Monde {
 
         /*Mine*/
 
-        Label Timine1 = new Label(String.valueOf(mine1.getX()));
-        Label Tjmine1 = new Label(String.valueOf(mine1.getY()));
-        Label Timine2 = new Label(String.valueOf(mine2.getX()));
-        Label Tjmine2 = new Label(String.valueOf(mine2.getY()));
+        Label Timine1 = new Label(String.valueOf(mine1.getX() + 1));
+        Label Tjmine1 = new Label(String.valueOf(mine1.getY() +1));
+        Label Timine2 = new Label(String.valueOf(mine2.getX() +1));
+        Label Tjmine2 = new Label(String.valueOf(mine2.getY() +1));
 
         Label Tnaturemine1 = new Label(String.valueOf(abreg(mine1.getNature())));
         Label Tnaturemine2 = new Label(String.valueOf(abreg(mine2.getNature())));
@@ -319,10 +319,10 @@ public class Monde {
         /*Entrepot*/
 
 
-        Label Tientrepot1 = new Label(String.valueOf(entrepot1.getX()));
-        Label Tjentrepot1 = new Label(String.valueOf(entrepot1.getY()));
-        Label Tientrepot2 = new Label(String.valueOf(entrepot2.getX()));
-        Label Tjentrepot2 = new Label(String.valueOf(entrepot2.getY()));
+        Label Tientrepot1 = new Label(String.valueOf(entrepot1.getX() +1));
+        Label Tjentrepot1 = new Label(String.valueOf(entrepot1.getY() + 1));
+        Label Tientrepot2 = new Label(String.valueOf(entrepot2.getX() + 1));
+        Label Tjentrepot2 = new Label(String.valueOf(entrepot2.getY() + 1));
 
         Label Tnatureentrepot1 = new Label(String.valueOf(abreg(entrepot1.getNatureE())));
         Label Tnatureentrepot2 = new Label(String.valueOf(abreg(entrepot2.getNatureE())));
